@@ -7,14 +7,18 @@
 // they each get a slice 
 
 import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../state';
 
-const initialState = {
+// Define a type for the slice state
+interface CounterState {
+    count: number
+}
+
+const initialState: CounterState = {
     count: 0
 }
 
-
-
-export const counterSlice = createSlice( {
+export const counterSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
@@ -23,11 +27,13 @@ export const counterSlice = createSlice( {
         },
         decrement: (state) => {
             state.count -= 1; 
-        }
-    }
+        },
+    },
 });
-
 
 export const {increment, decrement} = counterSlice.actions;
 
+export const selectCount = (state: RootState) => state.counter.count;
+
 export default counterSlice.reducer; // we can just import counterReducer and we will get this
+

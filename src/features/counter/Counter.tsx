@@ -1,13 +1,15 @@
-import React from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react'
+import { useAppSelector, useAppDispatch } from "../../state/hooks";
 import { increment, decrement } from './counterSlice'
 
 type Props = {}
 
 
 const Counter = (props: Props) => {
-    const count = useSelector((state) => state.counter.count);
+    const count = useAppSelector((state) => state.counter.count);
+    const dispatch = useAppDispatch()
 
+    // 
     return (
     <div>Counter</div>
     )
