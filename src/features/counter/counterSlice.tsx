@@ -28,6 +28,11 @@ export const counterSlice = createSlice({
         decrement: (state) => {
             state.count -= 1; 
         },
+        // use the payload action type to declare the contents of
+        // action.payload as number 
+        incrementByAmount: (state, action) => {
+            state.count += action.payload;
+        }
     },
 });
 
