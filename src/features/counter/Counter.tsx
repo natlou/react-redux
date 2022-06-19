@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useAppSelector, useAppDispatch } from "../../state/hooks";
-import { increment, decrement } from './counterSlice'
+import { increment, decrement, incrementByAmount } from './counterSlice'
 import styles from './Counter.module.css';
-
+import logo from '../../logo.svg';
 type Props = {}
 
 
 const Counter = (props: Props) => {
     const count = useAppSelector((state) => state.counter.count);
     const dispatch = useAppDispatch()
+    const [incrementAmount, setIncrementAmount] = useState('2'); 
+
+    const incrementValue = Number(incrementAmount) || 0 
 
     // 
     return (
@@ -30,6 +33,21 @@ const Counter = (props: Props) => {
           +
         </button>
       </div>
+      <div className={styles.row}>
+        <input
+          className={styles.textbox}
+          aria-label="Set increment amount"
+          value={incrementValue}
+          onChange={(ev) => {setIncrementAmount(ev.target.value)}}
+        />
+        <button
+          className={styles.button}
+          onClick={() => dispatch(incrementByAmount(incrementValue))}
+        >
+          Add Amount
+        </button>
+      </div>
+      <div className={styles.row}><img src={logo} className="App-logo" alt="logo" /></div>
     </div>
   );
 }

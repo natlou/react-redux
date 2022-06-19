@@ -6,7 +6,7 @@
 // the logic of each are handled differently so 
 // they each get a slice 
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../state';
 
 // Define a type for the slice state
@@ -30,13 +30,13 @@ export const counterSlice = createSlice({
         },
         // use the payload action type to declare the contents of
         // action.payload as number 
-        incrementByAmount: (state, action) => {
+        incrementByAmount: (state, action: PayloadAction<number>) => {
             state.count += action.payload;
         }
     },
 });
 
-export const {increment, decrement} = counterSlice.actions;
+export const {increment, decrement, incrementByAmount} = counterSlice.actions;
 
 export const selectCount = (state: RootState) => state.counter.count;
 
